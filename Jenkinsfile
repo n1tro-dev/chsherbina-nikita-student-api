@@ -18,29 +18,29 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building Spring Boot Application"
-                sh 'gradle assemble --no-daemon'
+                sh './gradlew assemble --no-daemon'
             }
         }
 
         stage('Test') {
-            steps{
+            steps {
                 echo "Testing"
-                sh 'gradle test --no-daemon'
+                sh './gradlew test --no-daemon'
             }
         }
 
         stage('Docker Build') {
-            steps{
+            steps {
                 echo "Building docker container: ${IMAGE_NAME}"
                 sh "docker build -t ${IMAGE_NAME} ."
             }
         }
 
         stage('Verify') {
-            steps{
+            steps {
                 echo "Verifying docker image exists"
                 sh "docker images | grep chsherbina-nikita"
-                echo "Pipeline execution completed successfuly for ${STUDENT_NAME} ${STUDENT_SURNAME}"
+                echo "Pipeline execution completed successfully for ${STUDENT_NAME} ${STUDENT_SURNAME}"
             }
         }
     }

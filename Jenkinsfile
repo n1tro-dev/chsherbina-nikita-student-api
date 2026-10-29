@@ -18,14 +18,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building Spring Boot Application"
-                sh './gradlew assemble'
+                sh 'gradle assemble --no-daemon'
             }
         }
 
         stage('Test') {
             steps{
                 echo "Testing"
-                sh './gradlew test'
+                sh 'gradle test --no-daemon'
             }
         }
 
